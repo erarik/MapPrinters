@@ -45,9 +45,24 @@ internal struct SOCKET_ADDRESS
     public Int32  iSockaddrLength;
 }
 
+        static public string GetUsage()
+        {
+            var text = @"MapPrinters v1.0.0
+Usage: MapPrinters.exe
+";
+            return text;
+        }
 
         static void Main(string[] args)
         {
+
+            if (args[0]=="-?" || args[0] == "-help")
+            {
+                Console.WriteLine(GetUsage());
+                return;
+            }
+              
+
             int minimumSpeed = 10000000;
             foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
             {
