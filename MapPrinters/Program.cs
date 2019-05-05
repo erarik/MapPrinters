@@ -155,7 +155,12 @@ Usage: MapPrinters.exe
 
         static void FindPrinters(string sLocation)
         {
+            if (sLocation == null)
+                return;
+
             var ds = new DirectorySearcher { Filter = "(&(objectClass=printqueue)(location=" + sLocation + "))" };
+
+            Console.WriteLine("[FindPrinters] Searching printers on location: " + sLocation);
 
             foreach (SearchResult sr in ds.FindAll())
             {
@@ -171,6 +176,9 @@ Usage: MapPrinters.exe
 
         static string GetLocation(string sSubnet)
         {
+            if (sSubnet == null)
+                return null;
+
             DirectoryEntry rootDSE = new DirectoryEntry("LDAP://RootDSE");
             string sNC = rootDSE.Properties["rootDomainNamingContext"].Value.ToString();
             //CN=10.0.216.0/30,CN=Subnets,CN=Sites,CN=Configuration,.....
@@ -225,7 +233,10 @@ Usage: MapPrinters.exe
                 return sSubnet;
             }
             else
+            {
+                Console.WriteLine("[GetSubnet] No subnet found!");
                 return null;
+            }
         }
     }
 
