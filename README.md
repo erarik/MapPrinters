@@ -12,3 +12,8 @@ For working on the project, open MapPrinters.sln and build.
 Development
 ----
 Visual Studio Community 2019 is required to build the program.
+
+Usage
+----
+MapPrinters.exe [-?|-help]
+
